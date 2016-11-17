@@ -34,7 +34,8 @@ namespace TwilioStore.Services
             catch (InsufficientInventoryException e)
             {
                 _notificationService.SendText(order.Customer.MobileNumber,
-                    $"Sorry, we don't have enough {e.LineItem.Description} in stock. :(");
+                    $"Sorry, we don't have enough {e.LineItem.Description} " +
+                    "in stock. :(");
                 throw;
             }
         }

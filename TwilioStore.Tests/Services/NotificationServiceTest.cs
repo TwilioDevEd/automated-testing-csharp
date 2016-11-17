@@ -10,11 +10,14 @@ namespace TwilioStore.Tests.Services
     [TestClass]
     public class NotificationServiceTest
     {
-        // TODO: Get your test credentials from https://www.twilio.com/console/account/settings
-        private const string TestAccountSid = "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-        private const string TestAuthToken = "0123456789abcdef0123456789abcdef";
+        // TODO: Get your test credentials from 
+        //   https://www.twilio.com/console/account/settings
+        private const string TestAccountSid =
+            "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        private const string TestAuthToken =
+            "0123456789abcdef0123456789abcdef";
 
-        // Magic numbers from https://www.twilio.com/docs/api/rest/test-credentials
+        // Magic numbers: https://www.twilio.com/docs/api/rest/test-credentials
         private const string ValidFromNumber = "+15005550006";
         private const string ValidToNumber = "+18778894546";
         private const string InvalidNumber = "+15005550001";
@@ -34,7 +37,8 @@ namespace TwilioStore.Tests.Services
             if (TestAccountSid == "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" ||
                 TestAuthToken == "0123456789abcdef0123456789abcdef")
             {
-                throw new Exception("You forgot to set your TestAccountSid and/or TestAuthToken");
+                throw new Exception("You forgot to set your TestAccountSid " +
+                                    "and/or TestAuthToken");
             }
 
             return configMock.Object;
@@ -63,7 +67,8 @@ namespace TwilioStore.Tests.Services
         {
             var config = GetTestConfig();
             var service = new NotificationService(config);
-            service.MakePhoneCall(ValidToNumber, "http://demo.twilio.com/docs/voice.xml");
+            service.MakePhoneCall(ValidToNumber, 
+                "http://demo.twilio.com/docs/voice.xml");
             // Should complete w/o exception
         }
 
@@ -73,7 +78,8 @@ namespace TwilioStore.Tests.Services
         {
             var config = GetTestConfig();
             var service = new NotificationService(config);
-            service.MakePhoneCall(InvalidNumber, "http://demo.twilio.com/docs/voice.xml");
+            service.MakePhoneCall(InvalidNumber, 
+                "http://demo.twilio.com/docs/voice.xml");
         }
 
         [TestMethod]
@@ -87,7 +93,7 @@ namespace TwilioStore.Tests.Services
 
         [TestMethod]
         [ExpectedException(typeof(NotificationException))]
-        public void BuyPhoneNumber_Should_Throw_Exception_If_Unavailable_Number()
+        public void BuyPhoneNumber_Should_Throw_Exception_If_Unavailable()
         {
             var config = GetTestConfig();
             var service = new NotificationService(config);

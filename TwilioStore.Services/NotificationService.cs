@@ -16,12 +16,14 @@ namespace TwilioStore.Services
         public NotificationService(INotificationConfiguration config)
         {
             _config = config;
-            _client = new TwilioRestClient(_config.AccountSid, _config.AuthToken);
+            _client = new TwilioRestClient(_config.AccountSid, 
+                _config.AuthToken);
         }
 
         public void SendText(string to, string message)
         {
-            var result = _client.SendMessage(_config.DefaultFromPhoneNumber, to, message);
+            var result = _client.SendMessage(_config.DefaultFromPhoneNumber, 
+                to, message);
             if (result.RestException != null)
             {
                 throw new NotificationException(result.RestException.Message);
@@ -30,7 +32,8 @@ namespace TwilioStore.Services
 
         public void MakePhoneCall(string to, string voiceUrl)
         {
-            var result = _client.InitiateOutboundCall(_config.DefaultFromPhoneNumber, to, voiceUrl);
+            var result = _client.InitiateOutboundCall(
+                _config.DefaultFromPhoneNumber, to, voiceUrl);
             if (result.RestException != null)
             {
                 throw new NotificationException(result.RestException.Message);

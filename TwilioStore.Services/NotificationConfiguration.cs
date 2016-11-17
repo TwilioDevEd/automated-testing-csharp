@@ -9,7 +9,8 @@ namespace TwilioStore.Services
         {
             AccountSid = ConfigurationManager.AppSettings["TwilioAccountSid"];
             AuthToken = ConfigurationManager.AppSettings["TwilioAuthToken"];
-            DefaultFromPhoneNumber = ConfigurationManager.AppSettings["TwilioFromNumber"];
+            DefaultFromPhoneNumber = 
+                ConfigurationManager.AppSettings["TwilioFromNumber"];
         }
 
         public string AccountSid { get; }

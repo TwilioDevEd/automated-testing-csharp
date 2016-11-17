@@ -33,7 +33,8 @@ namespace TwilioStore.Tests.Services
                     x => x.SendText(ValidToNumber, It.IsAny<string>()),
                     Times.Once
                 );
-            var expectedMessageStart = $"Your order {fakeOrder.Id} has shipped! Tracking: ";
+            var expectedMessageStart = $"Your order {fakeOrder.Id} has " +
+                "shipped! Tracking: ";
             Assert.IsTrue(textMessage.StartsWith(expectedMessageStart));
             Assert.IsTrue(textMessage.Length > expectedMessageStart.Length);
         }
