@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+using System.Configuration;
 using TwilioStore.Interfaces.Services;
 
 namespace TwilioStore.Services
