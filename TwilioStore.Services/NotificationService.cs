@@ -1,4 +1,4 @@
-﻿using Twilio;
+using Twilio;
 using TwilioStore.Interfaces.Services;
 using TwilioStore.Services.Exceptions;
 
