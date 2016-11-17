@@ -49,6 +49,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\InsufficientInventoryException.cs" />
+    <Compile Include="Exceptions\NotificationException.cs" />
     <Compile Include="NotificationConfiguration.cs" />
     <Compile Include="NotificationService.cs" />
     <Compile Include="OrderService.cs" />

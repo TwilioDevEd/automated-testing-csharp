@@ -1,8 +1,6 @@
-﻿using System.Configuration;
-using Twilio;
-using TwilioStore.Interfaces.Domain;
-using TwilioStore.Interfaces.Exceptions;
+﻿using TwilioStore.Interfaces.Domain;
 using TwilioStore.Interfaces.Services;
+using TwilioStore.Services.Exceptions;
 
 namespace TwilioStore.Services
 {
@@ -10,9 +8,13 @@ namespace TwilioStore.Services
     {
         private readonly INotificationService _notificationService;
 
-        public OrderService(INotificationService notificationService = null)
+        public OrderService() : this(new NotificationService())
         {
-            _notificationService = notificationService ?? new NotificationService();
+        }
+
+        public OrderService(INotificationService notificationService)
+        {
+            _notificationService = notificationService;
         }
 
         public void ProcessOrder(IOrder order)
@@ -48,6 +50,10 @@ namespace TwilioStore.Services
         private void ReserveInventoryForLineItem(IOrderDetail lineItem)
         {
             // TODO: Reserve inventory in inventory service
+            if (lineItem.Quantity > 10)
+            {
+                throw new InsufficientInventoryException(lineItem);
+            }
         }
         private string ShipOrder(IOrder order)
         {

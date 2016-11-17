@@ -1,6 +1,6 @@
 ﻿using Twilio;
-using TwilioStore.Interfaces.Exceptions;
 using TwilioStore.Interfaces.Services;
+using TwilioStore.Services.Exceptions;
 
 namespace TwilioStore.Services
 {
@@ -9,9 +9,13 @@ namespace TwilioStore.Services
         private readonly TwilioRestClient _client;
         private readonly INotificationConfiguration _config;
 
-        public NotificationService(INotificationConfiguration config = null)
+        public NotificationService() : this(new NotificationConfiguration())
         {
-            _config = config ?? new NotificationConfiguration();
+        }
+
+        public NotificationService(INotificationConfiguration config)
+        {
+            _config = config;
             _client = new TwilioRestClient(_config.AccountSid, _config.AuthToken);
         }
 

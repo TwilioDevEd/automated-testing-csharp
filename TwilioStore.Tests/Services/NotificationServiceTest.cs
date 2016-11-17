@@ -1,15 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using TwilioStore.Interfaces.Exceptions;
 using TwilioStore.Interfaces.Services;
 using TwilioStore.Services;
+using TwilioStore.Services.Exceptions;
 
 namespace TwilioStore.Tests.Services
 {
     [TestClass]
     public class NotificationServiceTest
     {
-        // Get your test credentials from https://www.twilio.com/console/account/settings
+        // TODO: Get your test credentials from https://www.twilio.com/console/account/settings
         private const string TestAccountSid = "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
         private const string TestAuthToken = "0123456789abcdef0123456789abcdef";
 
@@ -29,6 +30,13 @@ namespace TwilioStore.Tests.Services
                 .Returns(TestAuthToken);
             configMock.SetupGet(x => x.DefaultFromPhoneNumber)
                 .Returns(ValidFromNumber);
+
+            if (TestAccountSid == "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" ||
+                TestAuthToken == "0123456789abcdef0123456789abcdef")
+            {
+                throw new Exception("You forgot to set your TestAccountSid and/or TestAuthToken");
+            }
+
             return configMock.Object;
         }
 

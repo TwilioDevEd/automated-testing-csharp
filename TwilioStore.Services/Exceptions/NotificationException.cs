@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TwilioStore.Interfaces.Exceptions
+namespace TwilioStore.Services.Exceptions
 {
     public class NotificationException : Exception
     {

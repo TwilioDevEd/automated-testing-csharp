@@ -43,14 +43,14 @@
     <Compile Include="Domain\ICustomer.cs" />
     <Compile Include="Domain\IOrder.cs" />
     <Compile Include="Domain\IOrderDetail.cs" />
-    <Compile Include="Exceptions\InsufficientInventoryException.cs" />
-    <Compile Include="Exceptions\NotificationException.cs" />
     <Compile Include="Services\INotificationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\INotificationService.cs" />
     <Compile Include="Services\IOrderService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

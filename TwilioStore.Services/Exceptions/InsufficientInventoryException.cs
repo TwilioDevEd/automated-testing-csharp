@@ -1,7 +1,7 @@
 ﻿using System;
 using TwilioStore.Interfaces.Domain;
 
-namespace TwilioStore.Interfaces.Exceptions
+namespace TwilioStore.Services.Exceptions
 {
     public class InsufficientInventoryException : Exception
     {
