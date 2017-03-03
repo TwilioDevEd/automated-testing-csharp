@@ -12,9 +12,9 @@ namespace TwilioStore.Tests.Services
     {
         // TODO: Get your test credentials from 
         //   https://www.twilio.com/console/account/settings
-        private const string TestAccountSid =
+        private static string _testAccountSid =
             "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-        private const string TestAuthToken =
+        private static string _testAuthToken =
             "0123456789abcdef0123456789abcdef";
 
         // Magic numbers: https://www.twilio.com/docs/api/rest/test-credentials
@@ -26,20 +26,28 @@ namespace TwilioStore.Tests.Services
 
         private static INotificationConfiguration GetTestConfig()
         {
-            var configMock = new Mock<INotificationConfiguration>();
-            configMock.SetupGet(x => x.AccountSid)
-                .Returns(TestAccountSid);
-            configMock.SetupGet(x => x.AuthToken)
-                .Returns(TestAuthToken);
-            configMock.SetupGet(x => x.DefaultFromPhoneNumber)
-                .Returns(ValidFromNumber);
+            _testAccountSid =
+                Environment.GetEnvironmentVariable("TWILIO_TEST_ACCOUNT_SID")
+                ?? _testAccountSid;
 
-            if (TestAccountSid == "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" ||
-                TestAuthToken == "0123456789abcdef0123456789abcdef")
+            _testAuthToken =
+                Environment.GetEnvironmentVariable("TWILIO_TEST_AUTH_TOKEN")
+                ?? _testAuthToken;
+
+            if (_testAccountSid == "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" ||
+                _testAuthToken == "0123456789abcdef0123456789abcdef")
             {
                 throw new Exception("You forgot to set your TestAccountSid " +
                                     "and/or TestAuthToken");
             }
+
+            var configMock = new Mock<INotificationConfiguration>();
+            configMock.SetupGet(x => x.AccountSid)
+                .Returns(_testAccountSid);
+            configMock.SetupGet(x => x.AuthToken)
+                .Returns(_testAuthToken);
+            configMock.SetupGet(x => x.DefaultFromPhoneNumber)
+                .Returns(ValidFromNumber);
 
             return configMock.Object;
         }
