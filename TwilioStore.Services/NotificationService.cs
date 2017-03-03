@@ -1,4 +1,7 @@
-using Twilio;
+using System;
+using Twilio.Clients;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 using TwilioStore.Interfaces.Services;
 using TwilioStore.Services.Exceptions;
 
@@ -22,33 +25,50 @@ namespace TwilioStore.Services
 
         public void SendText(string to, string message)
         {
-            var result = _client.SendMessage(_config.DefaultFromPhoneNumber, 
-                to, message);
-            if (result.RestException != null)
+            try
             {
-                throw new NotificationException(result.RestException.Message);
+                MessageResource.Create(
+                    to: new PhoneNumber(to),
+                    from: new PhoneNumber(_config.DefaultFromPhoneNumber),
+                    body: message,
+                    client: _client
+                );
+            }
+            catch (Exception e)
+            {
+                throw new NotificationException(e.Message, e);
             }
         }
 
         public void MakePhoneCall(string to, string voiceUrl)
         {
-            var result = _client.InitiateOutboundCall(
-                _config.DefaultFromPhoneNumber, to, voiceUrl);
-            if (result.RestException != null)
+            try
             {
-                throw new NotificationException(result.RestException.Message);
+                CallResource.Create(
+                    to: new PhoneNumber(to),
+                    from: new PhoneNumber(_config.DefaultFromPhoneNumber),
+                    url: new Uri(voiceUrl),
+                    client: _client
+                );
+            }
+            catch (Exception e)
+            {
+                throw new NotificationException(e.Message, e);
             }
         }
 
         public void BuyPhoneNumber(string number)
         {
-            var result = _client.AddIncomingPhoneNumber(new PhoneNumberOptions
+            try
             {
-                PhoneNumber = number
-            });
-            if (result.RestException != null)
+                IncomingPhoneNumberResource.Create(
+                    phoneNumber: new PhoneNumber(number),
+                    client: _client
+                );
+            }
+            catch (Exception e)
             {
-                throw new NotificationException(result.RestException.Message);
+                throw new NotificationException(e.Message, e);
             }
         }
     }
