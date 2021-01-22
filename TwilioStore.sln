@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwilioStore.Interfaces", "TwilioStore.Interfaces\TwilioStore.Interfaces.csproj", "{C6D3516F-E0AA-4C76-9E26-72960B5CCF73}"
 EndProject
@@ -10,6 +10,22 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwilioStore.Domain", "TwilioStore.Domain\TwilioStore.Domain.csproj", "{50DBA346-6C81-4883-8CED-AB6359C6C785}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwilioStore.Tests", "TwilioStore.Tests\TwilioStore.Tests.csproj", "{EBB4A1CC-0478-44D6-A384-A73E570FEDDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{35C7AA8F-D550-4ACD-B845-73340DF13A2B}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.mergify.yml = .mergify.yml
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{BCC4D045-399D-46E1-844C-BB83086BA443}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{0746CD51-8284-4843-9006-BD30336EE8FD}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\NetFx.yml = .github\workflows\NetFx.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +52,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BCC4D045-399D-46E1-844C-BB83086BA443} = {35C7AA8F-D550-4ACD-B845-73340DF13A2B}
+		{0746CD51-8284-4843-9006-BD30336EE8FD} = {BCC4D045-399D-46E1-844C-BB83086BA443}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {503C0D31-87B4-4AD1-B8E3-5C52CC81686F}
 	EndGlobalSection
 EndGlobal
